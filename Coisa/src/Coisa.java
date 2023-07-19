@@ -6,7 +6,7 @@ public class Coisa {
         System.out.println("-----");
         controlarDisciplina();
         System.out.println("-----");
-        //registrarResumos();
+        registrarResumos();
     }
 
     public static void registrarDescanso() {
@@ -48,7 +48,7 @@ public class Coisa {
         System.out.println(prog2.aprovado());
         System.out.println(prog2.toString());
     }
-}/*
+
     private static void registrarResumos() {
         RegistroResumos meusResumos = new RegistroResumos(100);  // 100 resumos
 
@@ -63,11 +63,10 @@ public class Coisa {
             System.out.println(resumos[i]);
         }
 
-
         System.out.println();
         System.out.println("Resumos: ");
         System.out.println(meusResumos.imprimeResumos());
         System.out.println(meusResumos.temResumo("Classes"));
         System.out.println(meusResumos.temResumo("Objetos"));
     }
-}*/
+}
