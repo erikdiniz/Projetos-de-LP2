@@ -2,14 +2,31 @@ import java.util.Arrays;
 
 public class Disciplina {
     private String nome;
-    private double[] notas = new double[4];
+    private double[] notas;
     private int horasEstudo;
     private double media;
+    private int[] pesos;
 
     public Disciplina(String nome){
         this.nome = nome;
+        this.notas = new double[4];
         this.horasEstudo = 0;
         this.media = 0;
+    }
+
+    public Disciplina(String nome, int qntdNotas){
+        this.nome = nome;
+        this.notas = new double[qntdNotas];
+        this.horasEstudo = 0;
+        this.media = 0;
+    }
+
+    public Disciplina(String nome, int qntdNotas, int[] pesos){
+        this.nome = nome;
+        this.notas = new double[qntdNotas];
+        this.horasEstudo = 0;
+        this.media = 0;
+        this.pesos = pesos;
     }
 
     public void cadastraHoras(int horas){
@@ -20,16 +37,27 @@ public class Disciplina {
         this.notas[nota-1] = valorNota;
     }
 
-    public boolean aprovado(){
+    private double calculaMedia(double[] notas, int[] pesos){
         double soma = 0;
-
-        for (int i = 0; i < notas.length; i++){
-            soma += notas[i];
+        double somaPesos = 0;
+        if (pesos == null){
+            for (int i = 0; i < notas.length; i++){
+                soma += notas[i];
+            }
+            media = soma/notas.length;
+        } else {
+            for (int i = 0; i < notas.length; i++){
+                soma += notas[i]*pesos[i];
+                somaPesos += pesos[i];
+            }
+            media = soma/somaPesos;
         }
 
-        this.media = soma/4;
+        return media;
+    }
 
-        if (media < 7){
+    public boolean aprovado(){
+        if (calculaMedia(notas, pesos) < 7){
             return false;
         } else {
             return true;
